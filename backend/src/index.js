@@ -31,12 +31,16 @@ app.use("/message", messageRoute);
 
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
   app.get(/^(?!\/user|\/message).*$/, (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "../../frontend", "dist", "index.html"));
   });
 }
+
+const fs = require('fs');
+const frontendPath = path.join(__dirname, "../frontend/dist/index.html");
+console.log("Frontend file exists:", fs.existsSync(frontendPath));
 
 server.listen(port, () =>{
     console.log("server running at port 3001");
