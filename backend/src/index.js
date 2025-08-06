@@ -8,7 +8,6 @@ const path = require('path');
 dotenv.config();    
 
 const port = process.env.PORT || 3001;
-const __dirname = path.resolve();
 
 app.use(express.json({limit: '10mb'}));
 app.use(express.urlencoded({extended: true, limit: '10mb'}));
