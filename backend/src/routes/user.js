@@ -1,5 +1,4 @@
 const express = require('express');
-const{} = require("../controllers/user");
 const {
     handleSignUpUser,
     handleSignInUser,
