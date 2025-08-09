@@ -1,6 +1,6 @@
-# Whispr 💬
+# Chattr 💬
 
-Whispr is a modern, one-on-one chat application built with the **MERN** stack. It allows authenticated users to chat with others in real-time (or near real-time), with secure message storage and image upload functionality.
+Chattr is a modern, one-on-one chat application built with the **MERN** stack. It allows authenticated users to chat with others in real-time (or near real-time), with secure message storage and image upload functionality.
 
 ---
 
