@@ -31,11 +31,12 @@ const chatContainerRef = useRef(null);
   useEffect(() => {
     getMessages(selectedUser._id);
 
+    unlistenToMessages();
     listenToMessages();
 
     return () => unlistenToMessages();
 
-  }, [selectedUser._id, getMessages, listenToMessages, unlistenToMessages]);
+  }, [selectedUser._id]);
 
 
   useEffect(() => {

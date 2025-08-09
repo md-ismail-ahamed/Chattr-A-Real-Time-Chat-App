@@ -37,6 +37,11 @@ export const useChatStore = create((set,get) => ({
     try {
       const res = await axiosInstance.post(`/message/send/${selectedUser._id}`, messageData);
       set({ messages: [...messages, res.data] });
+       const socket = useAuthStore.getState().socket;
+        socket.emit("sendMessage", {
+            ...res.data,
+            receiverId: selectedUser._id
+        });
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -48,13 +53,19 @@ export const useChatStore = create((set,get) => ({
         
         const socket = useAuthStore.getState().socket;
         socket.on("newMessage", (newMessage) => {
+            const currentSelectedUser = get().selectedUser;
+            if (!currentSelectedUser) return;
+
+             console.log("Received message:", newMessage);
             const isMessagesSentFromSelectedUser = newMessage.senderId === selectedUser._id;
 
-            if(!isMessagesSentFromSelectedUser) return;
-
-             set({
-                 messages: [...get().messages, newMessage],
+            if(isMessagesSentFromSelectedUser) {
+                set((state) => {
+                const exists = state.messages.some(msg => msg._id === newMessage._id);
+                if (exists) return state; // Don't add duplicate
+                return { messages: [...state.messages, newMessage] };
             });
+        }
         })
     },
 
