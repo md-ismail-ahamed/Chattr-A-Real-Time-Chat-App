@@ -4,7 +4,7 @@ Chattr is a modern, one-on-one chat application built with the **MERN** stack. I
 
 ---
 
-## LINK -> https://whispr-a-real-time-chat-app.onrender.com/
+## LINK -> https://chattr-a-real-time-chat-app.onrender.com/
 
 ---
 
